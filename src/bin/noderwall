@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-"use strict";
-var path = require('path');
-var fs   = require('fs');
+'use strict';
 
-var lib  = path.join( path.dirname( fs.realpathSync(__filename) ), '../lib/noderwall.js' );
+var app     = require('commander'),
+    chalk   = require('chalk'),
+    lib     = '../lib/noderwall.js';
 
 require(lib).choprify();

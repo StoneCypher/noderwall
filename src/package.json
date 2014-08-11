@@ -16,8 +16,9 @@
     "noderwall": "./bin/noderwall"
   },
   "dependencies": {
-    "commander": "2.0.0",
-    "httpreq": "*"
+    "commander" : "2.0.0",
+    "httpreq"   : "*",
+    "chalk"     : "*"
   },
   "engines": {
     "node": "*"

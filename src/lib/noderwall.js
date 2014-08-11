@@ -5,7 +5,8 @@
 'use strict';
 
 var app     = require('commander'),
-    httpreq = require('httpreq');
+    httpreq = require('httpreq'),
+    chalk   = require('chalk');
 
 app.version('0.0.1')
    .option('-u, --user [user string]', 'Coderwall username to fetch')
@@ -15,19 +16,14 @@ app.version('0.0.1')
 
 
 
-function NoderwallFetchUser() {
+function noderwallFetchUser(user, callback) {
 
-    if (!(app.user)) {
-        console.log('\nError: Must set a user.\n\n  Usage: noderwall -u JohnHaugeland');
-        return;
-    }
+    var newUrl = 'https://www.coderwall.com/' + user.replace(/a-zA-Z0-9-_/) + '.json';
+    console.log(newUrl);
 
-    httpreq.get('http://www.coderwall.com/johnhaugeland.json', function (err, res){
-    
-        if (err) return console.log(err);
-
-        console.log(JSON.parse(res.body));
-
+    httpreq.get(newUrl, function (err, res){    
+        if (err) return console.log('error: ' + err.toString());
+        callback(JSON.parse(res.body));
     });
 
 }
@@ -36,6 +32,24 @@ function NoderwallFetchUser() {
 
 
 
-exports.noderwall = { user: NoderwallFetchUser };
+function noderwallConsole() {
 
-NoderwallFetchUser();
+    if (!(app.user)) {
+        console.log( chalk.red.bold('\nError: Must set a user.') );
+        console.log( chalk.white.bold('  Usage: noderwall -u JohnHaugeland') );
+        return;
+    }
+
+    noderwallFetchUser(app.user, function(UData) { 
+        console.log(JSON.stringify(UData));
+    });
+
+}
+
+
+
+
+
+exports.noderwall = { byUser: noderwallFetchUser };
+
+noderwallConsole();

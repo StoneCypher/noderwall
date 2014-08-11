@@ -2,8 +2,20 @@
 
 'use strict';
 
-var app     = require('commander'),
-    chalk   = require('chalk'),
-    lib     = '../lib/noderwall.js';
+var app       = require('commander'),
+    chalk     = require('chalk'),
+    noderwall = require('../lib/noderwall.js');
 
-require(lib).choprify();
+app.version('0.0.1')
+   .option('-u, --user [user string]', 'Coderwall username to fetch')
+   .parse(process.argv);
+
+if (!(app.user)) {
+    console.log( chalk.red.bold('\nError: Must set a user.') );
+    console.log( chalk.white.bold('  Usage: noderwall -u JohnHaugeland') );
+    return;
+}
+
+noderwall.byUser(app.user, function(UData) { 
+    console.log(JSON.stringify(UData));
+});

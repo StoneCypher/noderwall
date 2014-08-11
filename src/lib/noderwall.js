@@ -4,13 +4,7 @@
 
 'use strict';
 
-var app     = require('commander'),
-    httpreq = require('httpreq'),
-    chalk   = require('chalk');
-
-app.version('0.0.1')
-   .option('-u, --user [user string]', 'Coderwall username to fetch')
-   .parse(process.argv);
+var httpreq = require('httpreq');
 
 
 
@@ -32,24 +26,4 @@ function noderwallFetchUser(user, callback) {
 
 
 
-function noderwallConsole() {
-
-    if (!(app.user)) {
-        console.log( chalk.red.bold('\nError: Must set a user.') );
-        console.log( chalk.white.bold('  Usage: noderwall -u JohnHaugeland') );
-        return;
-    }
-
-    noderwallFetchUser(app.user, function(UData) { 
-        console.log(JSON.stringify(UData));
-    });
-
-}
-
-
-
-
-
-exports.noderwall = { byUser: noderwallFetchUser };
-
-noderwallConsole();
+exports.byUser = noderwallFetchUser;

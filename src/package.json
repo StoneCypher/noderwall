@@ -13,10 +13,11 @@
     "wrapper"
   ],
   "bin": {
-    "choprify": "./bin/noderwall"
+    "noderwall": "./bin/noderwall"
   },
   "dependencies": {
-    "commander": "2.0.0"
+    "commander": "2.0.0",
+    "httpreq": "*"
   },
   "engines": {
     "node": "*"

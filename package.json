@@ -2,7 +2,7 @@
   "author": "John Haugeland",
   "name": "noderwall",
   "description": "Coderwall API wrapper for Node.JS / NPM",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "repository": {
     "url": "https://github.com/StoneCypher/noderwall"
   },
@@ -14,6 +14,10 @@
   ],
   "bin": {
     "noderwall": "./bin/noderwall"
+  },
+  "devDependencies": {
+    "gulp": "*",
+    "sc-eslint": "*"
   },
   "dependencies": {
     "commander": "2.0.0",

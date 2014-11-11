@@ -1,15 +1,11 @@
 
 /* jshint node: true */
 /* eslint-env node, browser */
+
 "use strict";
 
-var gulp     = require("gulp"),
-    linttask = require("sc-eslint/estask.js");
+var gulp = require("gulp"),
+    lint = require("sc-eslint/estask.js");
 
-global.errorMessage = "";
-
-gulp.task("lint", linttask({
-  "targets" : "gulpfile.js lib/flocks.js test/enforce-tests.js"
-}));
-
+lint.gulpreg(gulp, { "targets" : "gulpfile.js lib/noderwall.js" });
 gulp.task("default", ["lint"]);

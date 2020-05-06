@@ -23,10 +23,15 @@
     "commander": "2.0.0",
     "httpreq": "*",
     "chalk": "*",
-    "sc-eslint": "*"
+    "sc-eslint": "*",
+    "snyk": "^1.319.0"
   },
   "engines": {
     "node": "*"
   },
-  "scripts": {}
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
